@@ -15,6 +15,13 @@ app.use(express.static('public'));
 app.use("/", require('./routes/user'));
 app.use("/recipe", require('./routes/recipe'));
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Backend is live 🚀",
+    routes: ["/recipe"]
+  });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

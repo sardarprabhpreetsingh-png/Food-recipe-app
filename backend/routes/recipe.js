@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 
+
 router.get('/', getRecipes); //GET ALL RECIPES
 router.get('/:id', getRecipe); //GET A RECIPE BY ID
 router.post('/',upload.single('file'),verifyToken,addRecipe); //CREATE A RECIPE
