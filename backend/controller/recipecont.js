@@ -1,10 +1,16 @@
 const Recipes = require('../models/recipe');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
+const uploadpath = path.join(__dirname, '../public/images')
+if (!fs.existsSync(uploadpath)) {
+  fs.mkdirSync(uploadpath, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../public/images'))
+    cb(null, path.join(__dirname, uploadpath))
   },
   filename: function (req, file, cb) {
     const filename = Date.now() + '-' + file.originalname
