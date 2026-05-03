@@ -3,10 +3,10 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/images')
+    cb(null, Path2D.join(__dirname, '../public/images'))
   },
   filename: function (req, file, cb) {
-    const filename = Date.now() + '-' + file.filename
+    const filename = Date.now() + '-' + file.originalname
     cb(null, filename)
   }
 })
@@ -29,6 +29,10 @@ const addRecipe = async (req, res) => {
   if (!title || !ingredients || !instructions) 
     {
       return res.json({message: "Required fields cant be empty"});
+    }
+
+    if (!req.file) {
+      return res.json({message: "Image is required"});
     }
 
 
