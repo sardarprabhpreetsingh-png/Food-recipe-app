@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { data } from 'react-router-dom'
+import { BASE_URL } from '../config'
+
 
 
 export default function InputForm({setIsOpen}) {
@@ -13,7 +15,7 @@ export default function InputForm({setIsOpen}) {
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     let endpoint = (isSignUp) ? "signUp" : "login"
-    await axios.post(`http://localhost:5000/${endpoint}`,{email, password}).then((res)=>{
+    await axios.post(`${BASE_URL}/${endpoint}`,{email, password}).then((res)=>{
       localStorage.setItem("token", res.data.token)
       localStorage.setItem("user", JSON.stringify(res.data.user))
       setIsOpen()

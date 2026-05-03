@@ -1,0 +1,1 @@
+export const BASE_URL = "https://food-recipe-backend-xztn.onrender.com";
